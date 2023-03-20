@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client';
+import { HomePage } from './pages/HomePage';
 const App = () => {
 	return (
-		<div className="abc">
-			<h1>Heeeeee</h1>
-		</div>
+		<>
+			<HomePage></HomePage>
+		</>
 	);
 };
 const container = document.getElementById('root');
