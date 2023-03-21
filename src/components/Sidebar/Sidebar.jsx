@@ -4,9 +4,17 @@ export const Sidebar = () => {
 		<div className="sidebar-container">
 			<div className="sidebar-content">
 				<a>Logo</a>
-				<a>Dashboard</a>
-				<a>User</a>
-				<a>Book</a>
+				<a>
+					<ion-icon name="home"></ion-icon>
+					Dashboard
+				</a>
+				<a>
+					<ion-icon name="people"></ion-icon>
+					User
+				</a>
+				<a>
+					<ion-icon name="book"></ion-icon>Book
+				</a>
 			</div>
 		</div>
 	);

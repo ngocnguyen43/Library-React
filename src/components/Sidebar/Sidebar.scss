@@ -7,13 +7,16 @@
 		display: flex;
 		gap: 2rem;
 		// flex-flow: column wrap;
-		flex-direction: column;
-		// flex-wrap: wrap;
+		flex-flow: column wrap;
 		// justify-content: space-between;
-		padding: 0;
+
+		padding: 0 2rem;
 		margin: 0;
-		a &:first-child {
+		height: 80%;
+		a:first-child {
 			flex-basis: 20%;
+			align-self: center;
+			padding-top: 1rem;
 		}
 	}
 }
