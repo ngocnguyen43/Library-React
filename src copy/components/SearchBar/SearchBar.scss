@@ -1,0 +1,38 @@
+.search-bar-container {
+	form div {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 2.5rem 2rem;
+		gap: 30px;
+		label {
+			padding: 0 1.5rem;
+			font-size: 24px;
+			font-weight: bold;
+			input,
+			select {
+				margin-left: 1.5rem;
+				padding: 0.5rem;
+				font-size: 16px;
+				border-radius: 10px;
+				width: 250px;
+				border: 1px;
+				outline: 1px;
+				&:focus {
+					border: 1px;
+					outline: 1px;
+				}
+			}
+		}
+		button {
+			padding: 0.25rem;
+			width: 150px;
+			font-size: 20px;
+			font-weight: bold;
+			border: none;
+			border-radius: 10px;
+			background-color: #797c80;
+			cursor: pointer;
+		}
+	}
+}
