@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useRef, useState } from 'react';
-import './Header.scss';
 import { SubNav } from './SubNav/SubNav';
-import useOnClickOutside from './../../hooks/useOnClickOutSide';
+import useOnClickOutside from '../../hooks/useOnClickOutSide';
+import './Header.scss';
 export const Header = () => {
 	const [show, setShow] = useState(false);
 	const showSubNav = () => setShow(!show);
