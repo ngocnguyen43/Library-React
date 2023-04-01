@@ -4,8 +4,13 @@ import { HomePage } from './pages/HomePage';
 const App = () => {
 	return (
 		<StrictMode>
+			{/* <BrowserRouter>
+				<Routes>
+					< Route path='/admin' element={<Admin />} />
+				</Routes>
+			</BrowserRouter> */}
 			<HomePage></HomePage>
-		</StrictMode>
+		</StrictMode >
 	);
 };
 const container = document.getElementById('root');
