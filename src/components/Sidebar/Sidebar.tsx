@@ -1,8 +1,8 @@
 import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoMenuOutline, IoPeopleOutline } from "react-icons/io5";
 import { IconType } from "react-icons/lib";
 import './Sidebar.scss';
-import { NavLink } from "react-router-dom";
-import { ReactNode, useState } from "react";
+import { Location, NavLink, useLocation } from "react-router-dom";
+import { ReactNode, useEffect, useState } from "react";
 interface Props {
     children?: ReactNode
 }
@@ -34,10 +34,12 @@ const menuItems: menuItem[] = [
     },
 ]
 export const Sidebar = ({ children }: Props) => {
-    const [isActive, setActive] = useState(false);
-    const toggleActive = () => {
-        setActive(!isActive);
-    };
+    const location: Location = useLocation()
+    const [url, setUrl] = useState<string>("")
+
+    useEffect(() => {
+        setUrl(location.pathname)
+    }, [location])
     return (
         <div className="sidebar-container">
             <div className="sidebar-content">
@@ -49,8 +51,10 @@ export const Sidebar = ({ children }: Props) => {
                 </div>
                 {menuItems.map((item: menuItem, index: number) => {
                     const Icon = item.icon;
+                    console.log((item.path === url ? " active" : null));
                     return (
-                        <NavLink to={item.path} key={index} className="link" onClick={() => toggleActive}>
+
+                        <NavLink to={item.path} key={index} className="link" >
                             <div className="icon"><Icon /></div>
                             <div className="icon-text">{item.name}</div>
                         </NavLink>

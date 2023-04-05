@@ -16,5 +16,6 @@ export const Admin = () => {
                     <Route path="/issues" element={<Issue />} />
                 </Routes>
             </Sidebar>
-        </BrowserRouter>)
+        </BrowserRouter>
+    )
 }
