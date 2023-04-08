@@ -8,7 +8,7 @@ export interface IGlobalState {
 
 export const initialState: IGlobalState = {
 	token: 'ABC',
-	role: 'user',
+	role: '',
 };
 export const Store = createContext<{ state: IGlobalState; dispatch: React.Dispatch<Action> }>({
 	state: initialState,

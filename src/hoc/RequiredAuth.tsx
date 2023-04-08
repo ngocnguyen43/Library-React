@@ -1,4 +1,4 @@
-import { useLogin } from '../hooks/useLogin';
+import { useLogin } from '../hooks';
 
 interface IChildProps {
     children: React.ReactNode,
@@ -7,8 +7,10 @@ interface IChildProps {
 export const RequiredAuth: React.FC<IChildProps> = ({ children, role }) => {
     const { isLogged } = useLogin(role)
     if (isLogged)
-        return (<>
-            {children}
-        </>)
+        return (
+            <>
+                {children}
+            </>
+        )
     else return <></>
 }
