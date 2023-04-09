@@ -1,9 +1,9 @@
 import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoMenuOutline, IoPeopleOutline } from "react-icons/io5";
 import { IconType } from "react-icons/lib";
-import './Sidebar.scss';
 import { Location, NavLink, useLocation } from "react-router-dom";
-import { ReactNode, useEffect, useState } from "react";
-interface Props {
+import React, { ReactNode, useEffect, useState } from "react";
+import './Sidebar.scss';
+interface IChilds {
     children?: ReactNode
 }
 interface menuItem {
@@ -33,7 +33,7 @@ const menuItems: menuItem[] = [
         icon: IoCalendarOutline
     },
 ]
-export const Sidebar = ({ children }: Props) => {
+export const Sidebar: React.FC<IChilds> = ({ children }) => {
     const location: Location = useLocation()
     const [url, setUrl] = useState<string>("")
 

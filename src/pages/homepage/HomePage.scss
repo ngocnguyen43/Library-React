@@ -1,0 +1,20 @@
+section {
+	// position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	.cards {
+		display: flex;
+		gap: 2rem;
+		justify-content: center;
+		flex-flow: row wrap;
+		padding-top: 5rem;
+		&::after {
+			content: '';
+			// flex: auto;
+			flex-basis: 24%;
+		}
+	}
+}

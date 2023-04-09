@@ -54,6 +54,17 @@
 		"import/resolver": {
 			"typescript": {
 				"alwaysTryTypes": true
+			},
+			"alias": {
+				"map": [
+					["@pages", "./src/pages/index.ts"],
+					["@hooks", "./src/hooks/index.ts"],
+					["@components", "./src/components/index.ts"],
+					["@utils", "./src/utils/index.ts"],
+					["@service", "./src/service/index.ts"],
+					["@store", "./src/store/index.ts"],
+					["@config", "./src/config/index.ts"]
+				]
 			}
 		}
 	}
