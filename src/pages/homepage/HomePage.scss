@@ -4,12 +4,13 @@ section {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 2rem;
 	.cards {
 		display: flex;
 		gap: 2rem;
 		justify-content: center;
 		flex-flow: row wrap;
-		padding: 3rem 0 3rem 5rem;
+		padding-top: 5rem;
 		&::after {
 			content: '';
 			// flex: auto;

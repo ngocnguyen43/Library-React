@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from "react";
 import { Header, Book } from "@components"
 import { useFetchBook } from "@hooks";
