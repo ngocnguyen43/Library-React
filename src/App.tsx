@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from "react";
-import { HomePage } from './pages/';
+import { HomePage } from '@pages';
 import { StoreProvider } from './store';
 const App = () => {
 	return (

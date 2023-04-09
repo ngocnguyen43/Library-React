@@ -1,6 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* Peslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useEffect, useState } from 'react';
-import { getAllBook } from '../service/book.service';
+import { getAllBook } from '@service';
+import { IBookFilter } from '@pages';
+import { ConvertToQuery } from '@utils';
 
 interface IBook {
 	_id: string;
@@ -15,26 +19,30 @@ export interface IResponse {
 	data: IBook[];
 	pagination: {
 		totalpages: number;
+		currentpage: number;
 	};
 	message: string;
 	statusCode: number;
 }
-export const useFetchBook = (): [IResponse | undefined, any, boolean] => {
-	const [data, setData] = useState<IResponse>();
+export const useFetchBook = (filter: IBookFilter): [IResponse | undefined, any, boolean] => {
+	const [data, setData] = useState<IResponse | undefined>();
 	const [error, setError] = useState<any>();
 	const [loading, setLoading] = useState(false);
+	console.log(ConvertToQuery(filter));
+
+	let users: IResponse | undefined;
 	useEffect(() => {
 		void (async () => {
 			try {
 				setLoading(true);
-				const res: IResponse = await getAllBook();
-				setData(res);
+				users = await getAllBook(ConvertToQuery(filter));
+				setData(users);
 			} catch (error: any) {
 				setError(error);
 			} finally {
-				setLoading(false);
+				users !== undefined && setLoading(false);
 			}
 		})();
-	}, []);
+	}, [filter]);
 	return [data, error, loading];
 };

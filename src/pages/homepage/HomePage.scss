@@ -1,8 +1,19 @@
 section {
 	// position: absolute;
 	display: flex;
-	gap: 2rem;
+	flex-direction: column;
 	justify-content: center;
-	flex-flow: row wrap;
-	margin: auto;
+	align-items: center;
+	.cards {
+		display: flex;
+		gap: 2rem;
+		justify-content: center;
+		flex-flow: row wrap;
+		padding: 3rem 0 3rem 5rem;
+		&::after {
+			content: '';
+			// flex: auto;
+			flex-basis: 24%;
+		}
+	}
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { SubNav } from './SubNav/SubNav';
 import useOnClickOutside from '../../hooks/useOnClickOutSide';
 import "./Header.scss"
@@ -12,7 +12,7 @@ import { USER_LOG_IN, USER_LOG_OUT } from '../../store/Constants';
 const NavItems = [
 	{}
 ]
-export const Header = () => {
+export const Header: React.FC = () => {
 	const [show, setShow] = useState(false);
 	const showSubNav = () => setShow(!show);
 	const navRef = useRef();
