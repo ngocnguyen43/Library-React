@@ -1,5 +1,12 @@
 export const User = () => {
     return <>
-        <h1>User</h1>
+        <table>
+            <thead>
+                <td>ID</td>
+                <td>ID</td>
+                <td>ID</td>
+                <td>ID</td>
+            </thead>
+        </table>
     </>
 }

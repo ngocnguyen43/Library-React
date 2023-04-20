@@ -1,21 +1,30 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Sidebar } from "../../components/Sidebar/Sidebar"
-import { Book } from './../../components/Book/Book';
-import { User } from "../../components/User/User";
-import { Issue } from './../../components/Issue/Issues';
-import { DashBoard } from "../../components/dashboard/DashBoard";
-
+import { Sidebar, Book, User, Issue, DashBoard } from "@components"
+import { ErrorPage, HomePage, RedirectAccess, Unauthorization, Login } from "@pages"
+import { RequireAuth } from "@components"
 export const Admin = () => {
     return (
-        <BrowserRouter>
-            <Sidebar>
-                <Routes>
-                    <Route path="/" element={<DashBoard />} />
-                    <Route path="/books" element={<Book />} />
-                    <Route path="/users" element={<User />} />
-                    <Route path="/issues" element={<Issue />} />
-                </Routes>
-            </Sidebar>
+        <BrowserRouter >
+            {/* <Sidebar> */}
+            <Routes >
+                <Route element={<RedirectAccess />} >
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Login />} />
+                </Route>
+                <Route path="/error" element={<Unauthorization />} />
+                <Route element={<RequireAuth roles={["", "user"]} />}>
+                    <Route path="/" element={<HomePage />} />
+                </Route>
+                <Route element={<RequireAuth roles={["admin"]} />} >
+                    <Route path="home" element={<DashBoard />} />
+                    <Route path="books" element={<Book />} />
+                    <Route path="users" element={<User />} />
+                    <Route path="issues" element={<Issue />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Route >
+                {/* </Route> */}
+            </Routes>
+            {/* </Sidebar> */}
         </BrowserRouter>
     )
 }

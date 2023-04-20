@@ -24,7 +24,7 @@ export interface IResponse {
 	message: string;
 	statusCode: number;
 }
-export const useFetchBook = (filter: IBookFilter): [IResponse | undefined, any, boolean] => {
+export const useFetchBook = (filter: IBookFilter, token: string): [IResponse | undefined, any, boolean] => {
 	const [data, setData] = useState<IResponse | undefined>();
 	const [error, setError] = useState<any>();
 	const [loading, setLoading] = useState(false);
@@ -35,7 +35,8 @@ export const useFetchBook = (filter: IBookFilter): [IResponse | undefined, any, 
 		void (async () => {
 			try {
 				setLoading(true);
-				users = await getAllBook(ConvertToQuery(filter));
+				// eslint-disable-next-line react-hooks/exhaustive-deps
+				users = await getAllBook(ConvertToQuery(filter), token);
 				setData(users);
 			} catch (error: any) {
 				setError(error);

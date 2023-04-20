@@ -1,3 +1,4 @@
 export type { IResponse } from './useFetchBook';
-export { useAuthenticate as useLogin } from './useAuthenticate';
+export { useLogin } from './useLogin';
+export { useAuthenticate as useAuth } from './useAuthenticate';
 export { useFetchBook } from './useFetchBook';

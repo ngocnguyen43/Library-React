@@ -11,10 +11,26 @@
 }
 body {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background-color: rgba(200, 199, 199, 0.842);
+	scroll-behavior: smooth;
+	&::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #b7b5b5;
+		border-radius: 20px;
+	}
+	&::-webkit-scrollbar-track {
+		background: #e2e0e0;
+	}
 }
 a,
 a:visited,
 a:hover,
 a:active {
 	color: inherit;
+}
+#root {
+	width: 100%;
 }

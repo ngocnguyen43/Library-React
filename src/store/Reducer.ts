@@ -22,7 +22,7 @@ export const Reducer = (state: IGlobalState, action: Action): IGlobalState => {
 		case USER_LOG_OUT:
 			return {
 				...initialState,
-				token: 'reset',
+				token: '',
 				role: '',
 			};
 		default:

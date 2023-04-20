@@ -1,12 +1,16 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode } from "react";
-import { HomePage } from '@pages';
+import { HomePage, Admin, ErrorPage } from '@pages';
 import { StoreProvider } from '@store';
 const App = () => {
 	return (
 		// <StrictMode>
 		<StoreProvider>
-			<HomePage></HomePage>
+			<ErrorPage>
+
+				<Admin />
+			</ErrorPage>
+			{/* <HomePage></HomePage> */}
 		</StoreProvider>
 		//</StrictMode > 
 	);
