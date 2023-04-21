@@ -3,10 +3,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { StoreContext, USER_LOG_IN } from "@store";
-import "./Login.scss"
 import { loginUser } from "@service";
-import { Navigate, useLocation } from "react-router-dom";
+import "./Login.scss"
 type IProps = {
     setShowLogin: (value: boolean) => void;
 }
@@ -22,13 +22,14 @@ export const Login: React.FC<IProps> = ({ setShowLogin }: IProps) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<any>();
     const location = useLocation();
+    const navigate = useNavigate();
+
     const OnClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        let res: IResults;
+        let res: IResults = {};
         try {
             setLoading(true);
             res = (await loginUser({ email, password })).data;
-            console.log(res);
             if (res.message) {
                 setError(res.message);
                 return;
@@ -36,14 +37,17 @@ export const Login: React.FC<IProps> = ({ setShowLogin }: IProps) => {
             if (res.role && res.token) {
                 dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token } });
                 setShowLogin(false);
-                // window.location.reload();
-                return <Navigate to="/" replace />
             };
+            if (res.role === "admin")
+                navigate("/home")
+            // return <Navigate to="/error" replace />
         } catch (error) {
             console.log(error);
             setError(error);
         } finally {
             setLoading(false);
+            // if (res && res.role === "user")
+            //     navigate("/")
         }
         //}
     }

@@ -2,11 +2,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* Peslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useEffect, useState } from 'react';
-import { getAllBook } from '@service';
+import { getAllBook, IIssues } from '@service';
 import { IBookFilter } from '@pages';
 import { ConvertToQuery } from '@utils';
+import { IUser } from './useFetchUser';
 
-interface IBook {
+export interface IBook {
 	_id: string;
 	title: string;
 	ISBN: string;
@@ -16,7 +17,7 @@ interface IBook {
 	description: string;
 }
 export interface IResponse {
-	data: IBook[];
+	data: IBook[] | IUser[] | IIssues[];
 	pagination: {
 		totalpages: number;
 		currentpage: number;

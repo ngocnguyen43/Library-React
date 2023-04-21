@@ -1,3 +1,4 @@
+import { Unauthorization } from "@pages";
 import { StoreContext } from "@store";
 import React, { useContext } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
@@ -10,7 +11,7 @@ export const RequireAuth: React.FC<IProps> = (props) => {
     const location = useLocation()
     const content = (
         roles.includes(state.role) ? <Outlet />
-            : <Navigate to="/error" state={{ from: location }} replace />
+            : <Unauthorization />
     )
     return content
 }
