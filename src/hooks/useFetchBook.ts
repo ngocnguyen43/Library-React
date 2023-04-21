@@ -2,11 +2,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* Peslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useEffect, useState } from 'react';
-import { getAllBook } from '@service';
+import { getAllBook, IIssues } from '@service';
 import { IBookFilter } from '@pages';
 import { ConvertToQuery } from '@utils';
+import { IUser } from './useFetchUser';
 
-interface IBook {
+export interface IBook {
 	_id: string;
 	title: string;
 	ISBN: string;
@@ -16,7 +17,7 @@ interface IBook {
 	description: string;
 }
 export interface IResponse {
-	data: IBook[];
+	data: IBook[] | IUser[] | IIssues[];
 	pagination: {
 		totalpages: number;
 		currentpage: number;
@@ -24,7 +25,7 @@ export interface IResponse {
 	message: string;
 	statusCode: number;
 }
-export const useFetchBook = (filter: IBookFilter): [IResponse | undefined, any, boolean] => {
+export const useFetchBook = (filter: IBookFilter, token: string): [IResponse | undefined, any, boolean] => {
 	const [data, setData] = useState<IResponse | undefined>();
 	const [error, setError] = useState<any>();
 	const [loading, setLoading] = useState(false);
@@ -35,7 +36,8 @@ export const useFetchBook = (filter: IBookFilter): [IResponse | undefined, any, 
 		void (async () => {
 			try {
 				setLoading(true);
-				users = await getAllBook(ConvertToQuery(filter));
+				// eslint-disable-next-line react-hooks/exhaustive-deps
+				users = await getAllBook(ConvertToQuery(filter), token);
 				setData(users);
 			} catch (error: any) {
 				setError(error);

@@ -1,11 +1,10 @@
-import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoMenuOutline, IoPeopleOutline } from "react-icons/io5";
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoLogOutOutline, IoPeopleOutline } from "react-icons/io5";
 import { IconType } from "react-icons/lib";
-import { Location, NavLink, useLocation } from "react-router-dom";
-import React, { ReactNode, useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import './Sidebar.scss';
-interface IChilds {
-    children?: ReactNode
-}
 interface menuItem {
     path: string,
     name: string,
@@ -13,55 +12,82 @@ interface menuItem {
 }
 const menuItems: menuItem[] = [
     {
-        path: "/",
+        path: "home",
         name: "HOME",
-        icon: IoHomeOutline
+        icon: IoHomeOutline,
     },
     {
-        path: "/users",
+        path: "users",
         name: "USERS",
         icon: IoPeopleOutline
     },
     {
-        path: "/books",
+        path: "books",
         name: "BOOKS",
         icon: IoBookOutline
     },
     {
-        path: "/issues",
+        path: "issues",
         name: "ISSUES",
         icon: IoCalendarOutline
     },
+    {
+        path: "/logout",
+        name: "LOG OUT",
+        icon: IoLogOutOutline,
+    },
 ]
-export const Sidebar: React.FC<IChilds> = ({ children }) => {
-    const location: Location = useLocation()
-    const [url, setUrl] = useState<string>("")
-
+export const Sidebar = () => {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [stepHeight, setStepHeight] = useState(0);
+    const sidebarRef = useRef<HTMLDivElement>(null);
+    const indicatorRef = useRef<HTMLDivElement>(null);
+    const location = useLocation();
     useEffect(() => {
-        setUrl(location.pathname)
-    }, [location])
-    return (
-        <div className="sidebar-container">
-            <div className="sidebar-content">
-                <div className="top-section">
-                    <a className="logo" href="/"><h4>Logo</h4></a>
-                    <div className="bars">
-                        <IoMenuOutline />
-                    </div>
-                </div>
-                {menuItems.map((item: menuItem, index: number) => {
-                    const Icon = item.icon;
-                    console.log((item.path === url ? " active" : null));
-                    return (
+        setTimeout(() => {
+            const sidebarItem = sidebarRef.current?.querySelector('.sidebar-menu-item');
+            if (indicatorRef.current && sidebarItem) {
+                indicatorRef.current.style.height = `${sidebarItem.clientHeight}px`
+            }
+            if (typeof (sidebarItem?.clientHeight) === 'number')
+                setStepHeight(sidebarItem.clientHeight);
+        }, 50);
+    }, []);
 
-                        <NavLink to={item.path} key={index} className="link" >
-                            <div className="icon"><Icon /></div>
-                            <div className="icon-text">{item.name}</div>
-                        </NavLink>
-                    )
-                })}
-            </div>
-            <main>{children}</main>
+    // change active index
+    useEffect(() => {
+        const curPath = window.location.pathname.split('/')[1];
+        const activeItem = menuItems.findIndex(item => item.path === curPath);
+        setActiveIndex(curPath.length === 0 ? 0 : activeItem);
+    }, [location]);
+
+    return <div className='sidebar'>
+        <div className="sidebar-logo">
+            Admin
         </div>
-    );
+        <div ref={sidebarRef} className="sidebar-menu">
+            <div
+                ref={indicatorRef}
+                className="sidebar-menu-indicator"
+                style={{
+                    transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                }}
+            ></div>
+            {
+                menuItems.map((item, index) => (
+                    <Link to={item.path} key={index}>
+                        <div className={`sidebar-menu-item ${activeIndex === index ? 'active' : ''}`} style={activeIndex === index ? { color: "#f3f3f3" } : {}}>
+                            <div className="sidebar-menu-item-icon" style={{ display: "flex" }}>
+                                {<item.icon style={{ fontWeight: "bolder", fontSize: "1.5rem" }} />}
+                            </div>
+                            <div className="sidebar-menu-item-text">
+                                {item.name}
+                            </div>
+                        </div>
+                    </Link>
+                ))
+            }
+        </div>
+    </div>;
 };
+

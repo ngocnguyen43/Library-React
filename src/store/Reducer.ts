@@ -6,6 +6,7 @@ export interface Action {
 	payload?: {
 		token: string;
 		role: string;
+		id: string;
 	};
 }
 // export type Action = { type: 'OK'; token?: string; role?: string } | { type: 'Pending'; token?: string; role?: string };
@@ -17,13 +18,15 @@ export const Reducer = (state: IGlobalState, action: Action): IGlobalState => {
 				...initialState,
 				token: action.payload?.token,
 				role: action.payload?.role,
+				id: action.payload?.id,
 			} as IGlobalState;
 
 		case USER_LOG_OUT:
 			return {
 				...initialState,
-				token: 'reset',
+				token: '',
 				role: '',
+				id: '',
 			};
 		default:
 			return state;

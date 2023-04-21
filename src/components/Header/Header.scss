@@ -7,8 +7,8 @@ header {
 	display: flex;
 	justify-content: space-between;
 	padding: 2rem;
-	background-color: #010101;
-	color: #f1f1f1;
+	background-color: #e6e6e6;
+	color: #3c3c3c;
 	font-size: 1.25rem;
 	main {
 		display: flex;
@@ -25,20 +25,38 @@ header {
 			cursor: pointer;
 			text-decoration: none;
 		}
+		button {
+			font-size: 12px;
+			font-weight: 500;
+			margin-left: 2rem;
+			padding: 0.75rem 1rem;
+			border: none;
+			transition: all 0.3s ease;
+			border-radius: 8px;
+			&:hover {
+				cursor: pointer;
+				transform: scale(1.05);
+				border-color: rgba(96, 96, 96, 0.9);
+			}
+		}
 	}
 }
-.login-modal-wrapper {
+.login-modal-wrapper,
+.register-modal-wrapper {
+	margin-top: 0;
 	width: 100vw;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
+	position: fixed;
+	top: 0;
 	z-index: 2;
 	background-color: #27262656;
 }
-.login-modal {
-	position: absolute;
+.login-modal,
+.register-modal {
+	position: fixed;
 	height: 500px;
 	width: 450px;
 	background-color: #f0f0f0;
@@ -52,4 +70,5 @@ header {
 	z-index: 9;
 	padding: 3rem;
 	overflow: hidden;
+	border-radius: 25px;
 }
