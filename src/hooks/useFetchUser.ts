@@ -26,8 +26,9 @@ export interface IUser {
 	roles: string[];
 	issues: string[];
 }
-export const useFetchUser = () => {
+export const useFetchUser = (value: number) => {
 	const [data, setData] = useState<IResponse | undefined>();
+	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	const [error, setError] = useState<any>();
 	const [loading, setLoading] = useState(false);
 	let users: IResponse | undefined;
@@ -36,6 +37,7 @@ export const useFetchUser = () => {
 		void (async () => {
 			try {
 				setLoading(true);
+				// eslint-disable-next-line react-hooks/exhaustive-deps
 				users = await GetAllUser(state.token);
 				setData(users);
 			} catch (exception) {
@@ -44,7 +46,7 @@ export const useFetchUser = () => {
 				users && setLoading(false);
 			}
 		})();
-	}, []);
+	}, [value]);
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 	return { data: data?.data, error, loading };
 };

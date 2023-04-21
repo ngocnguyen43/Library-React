@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { IBook, useFetchBook } from "@hooks"
 import { Pagination } from "@mui/material";
 import { IBookFilter } from "@pages";
-import { useState } from "react";
+import { StoreContext } from "@store";
+import { IBook, useFetchBook } from "@hooks"
+import { createNewBook, deleteBook } from "@service";
+import { useState, useContext } from "react";
 import { AdminBookRow } from "./AdminBookRow/AdminBookRow";
 import { Form } from "../../form/Form";
 import "./AdminBook.scss"
@@ -12,12 +14,22 @@ export const AdminBook = () => {
     const [filter, setFilter] = useState<IBookFilter>({ page: currentPage, category: "", title: "" });
     const [data, error, loading] = useFetchBook(filter, "");
     const [showModal, setShowModal] = useState<boolean>(false)
+    const { state } = useContext(StoreContext)
     const handleOnPageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setCurrrentPage(value)
         setFilter({ ...filter, page: value })
     }
     const handleSubmit = (data: IBook) => {
-        console.log(data);
+        void (async () => {
+            await createNewBook(data, state.token)
+        })()
+        setFilter({ page: currentPage, category: "", title: "" })
+    }
+    const handleDelete = (value: string) => {
+        void (async () => {
+            await deleteBook(value, state.token)
+        })()
+        setFilter({ page: currentPage, category: "", title: "" })
     }
     return <>
         <div className="button-add-user">
@@ -50,15 +62,14 @@ export const AdminBook = () => {
                 </tr>
             </thead>
             <tbody>
-                {/* {loading ? (<>Loading...</>) : <></>} */}
                 {data?.data?.length && data.data.map((book, index) => {
-                    return (<AdminBookRow key={index} id={index + 1 + (currentPage - 1) * 6} {...book} />)
+                    return (<AdminBookRow key={index} id={index + 1 + (currentPage - 1) * 6} {...book} OnDelete={handleDelete} />)
                 }
                 )}
             </tbody>
         </table>
         {loading ? (<>Loading...</>) : <></>}
-        <Pagination style={{ position: "absolute", bottom: "40%", left: "50%" }}
+        <Pagination style={{ position: "absolute", bottom: "20%", left: "50%" }}
             count={data?.pagination.totalpages || 1}
             showFirstButton
             showLastButton

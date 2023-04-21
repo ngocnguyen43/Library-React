@@ -78,3 +78,16 @@
 	top: 0;
 	right: 0;
 }
+.open-issue-box-wrapper {
+	position: fixed;
+	z-index: 5;
+	background-color: #27262656;
+	margin-top: 0;
+	width: 100vw;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+}

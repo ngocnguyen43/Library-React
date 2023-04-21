@@ -28,7 +28,7 @@ export const Header: React.FC = () => {
 					}
 					{state.role === "user" &&
 						<>
-							<span>HELLO</span>
+							<span>WELCOME BACK!</span>
 							<button onClick={() => { dispatch({ type: USER_LOG_OUT }); return <Navigate to="/" state={{ from: location }} replace /> }}>LOG OUT</button>
 						</>
 					}

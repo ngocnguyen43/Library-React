@@ -15,6 +15,7 @@ export interface IResults {
     message?: string;
     token?: string;
     role?: string;
+    id?: string
 }
 export const Login: React.FC<IProps> = (props) => {
     const { setShowLogin, setShowRegister } = props;
@@ -35,8 +36,8 @@ export const Login: React.FC<IProps> = (props) => {
                 setError(res.message);
                 return;
             }
-            if (res.role && res.token) {
-                dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token } });
+            if (res.role && res.token && res.id) {
+                dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token, id: res.id } });
                 setShowLogin(false);
             };
             if (res.role === "admin")

@@ -52,7 +52,7 @@ export const Form = <T extends Record<string, any>>({
             <div className='form-wrapper' >
                 <form onSubmit={handleSubmit}>
                     {formFields}
-                    <button type="submit">Add</button>
+                    <button >Add</button>
                 </form>
             </div>
         </>

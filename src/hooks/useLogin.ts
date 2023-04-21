@@ -7,6 +7,7 @@ interface IResults {
 	message?: string;
 	token?: string;
 	role?: string;
+	id?: string;
 }
 export const useLogin = () => {
 	const { dispatch } = useContext(StoreContext);
@@ -17,14 +18,13 @@ export const useLogin = () => {
 		try {
 			setLoading(true);
 			res = (await loginUser(data)).data;
-			console.log(res.message);
-
+			console.log(res.id);
 			if (res.message) {
 				setError(res.message);
 				return;
 			}
-			if (res.role && res.token) dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token } });
-			// else throw new Error('Error');
+			if (res.role && res.token && res.id)
+				dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token, id: res.id } });
 		} catch (error) {
 			console.log(error);
 			setError(error);

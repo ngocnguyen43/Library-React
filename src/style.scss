@@ -31,6 +31,29 @@ a:hover,
 a:active {
 	color: inherit;
 }
+input[type='date'] {
+	background-color: #9e9e9e;
+	padding: 15px;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	font-family: 'Roboto Mono', monospace;
+	color: #e7e7e7;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	::-webkit-calendar-picker-indicator {
+		background-color: #ffffff;
+		padding: 5px;
+		cursor: pointer;
+		border-radius: 3px;
+	}
+}
 #root {
 	width: calc(100% - 10px);
 }
