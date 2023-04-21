@@ -1,0 +1,28 @@
+.dashboard-box {
+	display: flex;
+	justify-content: space-around;
+	height: 300px;
+	width: 100%;
+	// background-color: aqua;
+	// position: absolute;
+	// top: 0;
+	gap: 3rem;
+	.box {
+		font-size: 1.25rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 400px;
+		height: 200px;
+		background-color: rgb(62, 132, 239);
+		border-radius: 12px;
+		color: rgb(220, 220, 220);
+		transition: all 0.3s ease;
+		&:hover {
+			transform: scale(1.05);
+		}
+		h1 {
+			display: block;
+		}
+	}
+}

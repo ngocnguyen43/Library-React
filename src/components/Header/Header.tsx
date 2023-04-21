@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
 	const [showRegister, setShowRegister] = React.useState<boolean>(false)
 	const { state, dispatch } = useContext(StoreContext)
 	const location = useLocation();
-	showLogin ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "");
+	(showLogin || showRegister) ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "");
 	return (
 		<>
 			<header>
@@ -37,13 +37,13 @@ export const Header: React.FC = () => {
 			{showLogin && (
 				<>
 					<div className={'login-modal-wrapper' + (showLogin ? " open" : "")} onClick={() => setShowLogin(false)}></div>
-					<div className="login-modal"><Login setShowLogin={setShowLogin} /></div>
+					<div className="login-modal"><Login setShowLogin={setShowLogin} setShowRegister={setShowRegister} /></div>
 				</>
 			)}{
 				showRegister && (
 					<>
 						<div className={"register-modal-wrapper" + (showRegister ? " open" : "")} onClick={() => setShowRegister(false)}></div>
-						<div className="register-modal"><Register /></div>
+						<div className="register-modal"><Register setShowRegister={setShowRegister} /></div>
 					</>
 				)
 			}

@@ -7,6 +7,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 15px;
 	gap: 1rem;
 	span,
 	button {
@@ -29,12 +30,13 @@
 		width: 300px;
 		height: 2rem;
 		margin: 2rem 0;
-
 		input {
 			line-height: 1.5rem;
 			padding: 0.75rem;
 			width: 100%;
 			font-size: 1.15rem;
+			border-radius: 12px;
+			border: none;
 		}
 	}
 
@@ -47,6 +49,7 @@
 		outline: none;
 		border: none;
 		color: white;
+		border-radius: 12px;
 		&:hover {
 			transform: scale(1.05);
 			border-color: rgba(130, 130, 130, 0.9);
@@ -58,7 +61,7 @@
 		bottom: 0;
 		width: 100%;
 		padding: 1.25rem;
-		background-color: #0b0713;
+		background-color: #666667;
 		border: 1px solid #b1acac;
 		// margin-left: 0;
 		// overflow: hidden;
@@ -73,7 +76,7 @@
 			justify-content: center;
 			align-items: center;
 			font-size: 0.85rem;
-			color: #f0f0f0;
+			color: #fcfafa;
 			a {
 				text-decoration: underline;
 				cursor: pointer;

@@ -9,5 +9,5 @@ export { Login } from './form/login/Login';
 export { Sidebar } from './Sidebar/Sidebar';
 export { Book } from './Book/Book';
 export { AdminBook } from './Book/AdminBook/AdminBook';
-
+export { Logout } from './auth/Logout';
 // export { SearchBar } from './../components/Search/SearchBar';

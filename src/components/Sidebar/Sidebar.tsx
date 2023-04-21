@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoPeopleOutline } from "react-icons/io5";
+import { IoBookOutline, IoCalendarOutline, IoHomeOutline, IoLogOutOutline, IoPeopleOutline } from "react-icons/io5";
 import { IconType } from "react-icons/lib";
 import { Link, useLocation } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import './Sidebar.scss';
-import { StoreContext } from "@store";
 interface menuItem {
     path: string,
     name: string,
@@ -32,6 +31,11 @@ const menuItems: menuItem[] = [
         name: "ISSUES",
         icon: IoCalendarOutline
     },
+    {
+        path: "/logout",
+        name: "LOG OUT",
+        icon: IoLogOutOutline,
+    },
 ]
 export const Sidebar = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -39,9 +43,6 @@ export const Sidebar = () => {
     const sidebarRef = useRef<HTMLDivElement>(null);
     const indicatorRef = useRef<HTMLDivElement>(null);
     const location = useLocation();
-    const { state, dispatch } = useContext(StoreContext);
-    console.log(state);
-
     useEffect(() => {
         setTimeout(() => {
             const sidebarItem = sidebarRef.current?.querySelector('.sidebar-menu-item');

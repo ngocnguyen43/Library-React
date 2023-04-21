@@ -22,3 +22,19 @@ export const loginUser = async (data: Logindata) => {
 		data: login,
 	}).catch((err) => err.response);
 };
+export const registerUser = async (data: Logindata & { name: string }) => {
+	const { name, email, password } = data;
+	const value = qs.stringify({
+		name: name,
+		email: email,
+		password: password,
+	});
+	return await Axios({
+		method: 'POST',
+		url: '/auth/register',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+		data: value,
+	}).catch((err) => err.response);
+};

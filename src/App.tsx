@@ -2,8 +2,8 @@ import { createRoot } from 'react-dom/client';
 import { StrictMode } from "react";
 import { StoreProvider } from '@store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Book, Issue, RequireAuth, User, AdminBook } from '@components';
-import { HomePage, Admin, ErrorPage, RedirectAccess, Login, Unauthorization } from '@pages';
+import { Issue, RequireAuth, User, AdminBook, Logout, DashBoard } from '@components';
+import { HomePage, ErrorPage, RedirectAccess, Login, Unauthorization } from '@pages';
 import { Layout } from './components/layout/Layout';
 const App = () => {
 	return (
@@ -12,6 +12,7 @@ const App = () => {
 				<ErrorPage>
 					<BrowserRouter >
 						<Routes >
+							<Route path='/logout' element={<Logout />} />
 							<Route element={<RedirectAccess />} >
 								<Route path="/login" element={<Login />} />
 								<Route path="/register" element={<Login />} />
@@ -20,14 +21,12 @@ const App = () => {
 							<Route element={<RequireAuth roles={["", "user"]} />}>
 								<Route path="/" element={<HomePage />} />
 							</Route>
-							{/* <Route element={<RequireAuth roles={["admin"]} />} > */}
 							<Route path='/' element={<Layout />}>
-								<Route path='home' element={<></>} />
+								<Route path='home' element={<><DashBoard /></>} />
 								<Route path="books" element={<><AdminBook /></>} />
 								<Route path="users" element={<><User /></>} />
 								<Route path="issues" element={<><Issue /></>} />
 							</Route>
-							{/* </Route > */}
 							<Route path="*" element={<>Error</>} />
 						</Routes>
 					</BrowserRouter>

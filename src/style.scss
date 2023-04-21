@@ -14,7 +14,7 @@ body {
 	background-color: rgba(200, 199, 199, 0.842);
 	scroll-behavior: smooth;
 	&::-webkit-scrollbar {
-		width: 10px;
+		width: 5px;
 		height: 10px;
 	}
 	&::-webkit-scrollbar-thumb {
@@ -32,5 +32,5 @@ a:active {
 	color: inherit;
 }
 #root {
-	width: 100%;
+	width: calc(100% - 10px);
 }

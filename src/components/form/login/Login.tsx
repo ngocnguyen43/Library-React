@@ -3,25 +3,26 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useState } from "react";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { StoreContext, USER_LOG_IN } from "@store";
 import { loginUser } from "@service";
 import "./Login.scss"
 type IProps = {
     setShowLogin: (value: boolean) => void;
+    setShowRegister: (value: boolean) => void
 }
-interface IResults {
+export interface IResults {
     message?: string;
     token?: string;
     role?: string;
 }
-export const Login: React.FC<IProps> = ({ setShowLogin }: IProps) => {
+export const Login: React.FC<IProps> = (props) => {
+    const { setShowLogin, setShowRegister } = props;
     const { dispatch } = useContext(StoreContext)
     const [email, setEmail] = useState("");
     const [password, setPawword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<any>();
-    const location = useLocation();
     const navigate = useNavigate();
 
     const OnClick = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -40,16 +41,12 @@ export const Login: React.FC<IProps> = ({ setShowLogin }: IProps) => {
             };
             if (res.role === "admin")
                 navigate("/home")
-            // return <Navigate to="/error" replace />
         } catch (error) {
             console.log(error);
             setError(error);
         } finally {
             setLoading(false);
-            // if (res && res.role === "user")
-            //     navigate("/")
         }
-        //}
     }
     return (
         <div className="login-container">
@@ -60,11 +57,11 @@ export const Login: React.FC<IProps> = ({ setShowLogin }: IProps) => {
                     </span>
                 </div>
                 <div className="input-box"><input type="text" placeholder="Email" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} /></div>
-                <div className="input-box"><input type="text" placeholder="Password" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPawword(e.target.value)} /></div>
+                <div className="input-box"><input type="password" placeholder="Password" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPawword(e.target.value)} /></div>
                 {error && <span>{error}</span>}
                 <button className="login-btn" onClick={(e) => void OnClick(e)}>Login</button>
                 <div className="login-footer">
-                    <span >Not a member ?&nbsp; <a onClick={() => setShowLogin(false)}>  Create Account </a></span>
+                    <span >Not a member ?&nbsp; <a onClick={() => { setShowLogin(false); setShowRegister(true) }}>  Create Account </a></span>
                 </div>
             </form>
         </div>)
