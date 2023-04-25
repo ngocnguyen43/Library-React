@@ -1,7 +1,7 @@
 .book-details-wrapper {
 	position: fixed;
 	width: 500px;
-	height: 500px;
+	height: 600px;
 	background-color: rgb(249, 249, 249);
 	z-index: 4;
 	top: 50%;
@@ -16,5 +16,14 @@
 	.book-details-content {
 		width: 100%;
 		height: 100%;
+		.book-image-details {
+			background-position: center;
+			background-size: cover;
+			height: 230px;
+			width: 100%px;
+			border-radius: 12px;
+			border: 1px solid rgba(226, 223, 223, 0.255);
+			margin-bottom: 2rem;
+		}
 	}
 }
