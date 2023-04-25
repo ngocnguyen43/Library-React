@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { registerUser } from "@service";
+import { StoreContext, USER_LOG_IN } from "@store";
 import { IResults } from "../login/Login";
 import "./Register.scss"
 import React, { useContext, useState } from 'react';
-import { StoreContext, USER_LOG_IN } from "@store";
 import { useNavigate } from "react-router-dom";
 interface IProps {
     setShowRegister: (value: boolean) => void;
@@ -28,8 +28,8 @@ export const Register: React.FC<IProps> = (props) => {
                 setError(res.message);
                 return;
             }
-            if (res.role && res.token) {
-                dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token } });
+            if (res.role && res.token && res.id) {
+                dispatch({ type: USER_LOG_IN, payload: { role: res.role, token: res.token, id: res.id } });
                 setShowRegister(false);
                 navigate("/")
             };

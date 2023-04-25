@@ -60,7 +60,7 @@ export const Book: React.FC<IBookProps> = (props) => {
                     <div className={'open-details-wrapper' + (openDetails ? " active" : "")} onClick={(e) => {
                         setOpenDetails(false); console.log(e.currentTarget);
                     }}></div>
-                    <BookDetails {...props} />
+                    <BookDetails {...props} image={memoUrl} />
                 </>
             }
             {

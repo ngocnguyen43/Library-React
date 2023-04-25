@@ -27,7 +27,8 @@
 			}
 		}
 		.card-img {
-			background-image: url(https://picsum.photos/200/300);
+			// background-image: url(https://picsum.photos/200/300);
+			background-image: url(http://books.google.com/books/publisher/content?id=RcEDAQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70j4BZl3zCOO_g0uSU-cBEe9aYshfqET11e9zyanEidboimX6mcb1Fsg90gsPQ0neSgKIXQ75vkIpFUMGFsbAehi1sijDeal38K4lgti6Wxt-EedPJfm7g5i25oo0Uz_KGL5piK&source=gbs_api);
 			background-position: center;
 			background-size: cover;
 			height: 250px;
@@ -56,7 +57,7 @@
 				border: 1px solid rgba(34, 35, 35, 0.6);
 				transition: all 0.3s ease;
 				&:hover {
-					transform: scale(1.25);
+					transform: scale(1.075);
 					color: rgba(175, 169, 169, 0.9);
 					border-color: rgba(130, 130, 130, 0.9);
 					transition: all 0.3s ease;
