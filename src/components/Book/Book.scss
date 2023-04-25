@@ -1,0 +1,94 @@
+.card-container {
+	width: 450px;
+	height: 500px;
+	flex-basis: 24%;
+	border-radius: 12px;
+	// border: 1px solid rgba(144, 138, 138, 0.521);
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.075);
+	background-color: #e0e0e0;
+	transition: 0.2s ease-in-out;
+	&:hover {
+		transform: scale(1.05);
+		cursor: pointer;
+	}
+	.card-wrapper {
+		width: 100%;
+		height: 100%;
+		.card-content {
+			padding-top: 1.5rem;
+			height: 127px;
+			width: 280px;
+			h2 {
+				text-transform: capitalize;
+			}
+		}
+		.card-img {
+			// background-image: url(https://picsum.photos/200/300);
+			background-image: url(http://books.google.com/books/publisher/content?id=RcEDAQAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70j4BZl3zCOO_g0uSU-cBEe9aYshfqET11e9zyanEidboimX6mcb1Fsg90gsPQ0neSgKIXQ75vkIpFUMGFsbAehi1sijDeal38K4lgti6Wxt-EedPJfm7g5i25oo0Uz_KGL5piK&source=gbs_api);
+			background-position: center;
+			background-size: cover;
+			height: 250px;
+			width: 100%px;
+			border-radius: 12px;
+			border: 1px solid rgba(226, 223, 223, 0.255);
+		}
+		.card-button {
+			display: flex;
+			justify-content: center;
+			button {
+				// margin: 0.5rem;
+				box-shadow: 0 0 10px rgba(149, 149, 149, 0.5);
+				border: none;
+				padding: 12px 24px;
+				border-radius: 24px;
+				font-size: 12px;
+				font-size: 0.8rem;
+				letter-spacing: 2px;
+				cursor: pointer;
+				margin-left: 0.75rem;
+			}
+			.outline {
+				background: transparent;
+				color: rgba(63, 63, 63, 0.9);
+				border: 1px solid rgba(34, 35, 35, 0.6);
+				transition: all 0.3s ease;
+				&:hover {
+					transform: scale(1.075);
+					color: rgba(175, 169, 169, 0.9);
+					border-color: rgba(130, 130, 130, 0.9);
+					transition: all 0.3s ease;
+				}
+			}
+		}
+	}
+}
+.open-details-wrapper {
+	position: fixed;
+	z-index: 4;
+	background-color: #27262656;
+	margin-top: 0;
+	width: 100vw;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+}
+.open-issue-box-wrapper {
+	position: fixed;
+	z-index: 5;
+	background-color: #27262656;
+	margin-top: 0;
+	width: 100vw;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	right: 0;
+}

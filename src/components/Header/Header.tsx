@@ -1,33 +1,52 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { useRef, useState } from 'react';
-import { SubNav } from './SubNav/SubNav';
-import useOnClickOutside from '../../hooks/useOnClickOutSide';
-import './Header.scss';
-export const Header = () => {
-	const [show, setShow] = useState(false);
-	const showSubNav = () => setShow(!show);
-	const navRef = useRef();
-
-	useOnClickOutside(navRef, () => setShow(false));
-	// document.addEventListener('mousedown', closeSubNav);
+import React from 'react';
+import { useContext } from 'react';
+import { StoreContext, USER_LOG_OUT } from '@store';
+import { Login, Register } from '@components';
+import { Navigate, useLocation } from 'react-router-dom';
+import "./Header.scss"
+export const Header: React.FC = () => {
+	const [showLogin, setShowLogin] = React.useState<boolean>(false);
+	const [showRegister, setShowRegister] = React.useState<boolean>(false)
+	const { state, dispatch } = useContext(StoreContext)
+	const location = useLocation();
+	(showLogin || showRegister) ? (document.body.style.overflow = "hidden") : (document.body.style.overflow = "");
 	return (
-		<div className="header">
+		<>
 			<header>
-				<nav>
-					<ul>
-						<li>
-							<ion-icon name="notifications"></ion-icon>
-						</li>
-						<li className="dropdown-nav">
-							<div>
-								<ion-icon name="person" onClick={showSubNav}></ion-icon>
-							</div>
-							{show && <SubNav ref={navRef} />}
-						</li>
-					</ul>
-				</nav>
+				<a className='logo' href='/'>LOGO</a>
+				<main>
+					<span></span>
+					{state.role === "" &&
+						<>
+							<button onClick={() => setShowLogin(true)}>LOG IN</button>
+							<button onClick={() => setShowRegister(true)}>REGISTER</button>
+						</>
+					}
+					{state.role === "user" &&
+						<>
+							<span>WELCOME BACK!</span>
+							<button onClick={() => { dispatch({ type: USER_LOG_OUT }); return <Navigate to="/" state={{ from: location }} replace /> }}>LOG OUT</button>
+						</>
+					}
+				</main>
 			</header>
-		</div>
+			{showLogin && (
+				<>
+					<div className={'login-modal-wrapper' + (showLogin ? " open" : "")} onClick={() => setShowLogin(false)}></div>
+					<div className="login-modal"><Login setShowLogin={setShowLogin} setShowRegister={setShowRegister} /></div>
+				</>
+			)}{
+				showRegister && (
+					<>
+						<div className={"register-modal-wrapper" + (showRegister ? " open" : "")} onClick={() => setShowRegister(false)}></div>
+						<div className="register-modal"><Register setShowRegister={setShowRegister} /></div>
+					</>
+				)
+			}
+		</>
 	);
 };
